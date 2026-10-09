@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>admin — prerak.barot</title>
+<style>
+:root{--bg:#05080B;--p:#0e151c;--l:rgba(130,170,160,.16);--ink:#e8f0eb;--m:#8c9aa3;--g:#3ef59a;--r:#ff6b6b;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.6 ui-monospace,Menlo,Consolas,monospace;padding:28px 20px}
+.w{max-width:880px;margin:auto}h1{font-size:20px}h1 b{color:var(--g)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}
+.card{background:var(--p);border:1px solid var(--l);border-radius:14px;padding:20px;margin-bottom:14px}.new{border-left:3px solid var(--g)}
+input,textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--l);border-radius:10px;padding:12px 14px;color:var(--ink);font:inherit;margin:6px 0 14px}
+input[type=checkbox]{width:auto;margin:0 8px 0 0}label{color:var(--m);font-size:13px}
+button{font:inherit;cursor:pointer;border-radius:999px;border:1px solid var(--l);background:none;color:var(--ink);padding:9px 18px}
+button.p{background:var(--g);color:#04150c;border-color:var(--g);font-weight:700}button.d{color:var(--r);border-color:var(--r)}
+.tabs{display:flex;gap:10px;margin-bottom:20px}.tabs .on{border-color:var(--g);color:var(--g)}
+.m{color:var(--m);font-size:13px}.act{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}a{color:var(--g)}#err{color:var(--r);min-height:22px}
+:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+</style></head><body><div class="w">
+<div id="login" class="card" style="max-width:420px;margin:12vh auto"><h1>admin<b>@</b>prerak.barot</h1><br>
+<form id="lf"><label for="pw">password</label><input id="pw" type="password" required autocomplete="current-password"><button class="p">log in</button></form><div id="err" role="alert"></div></div>
+<div id="app" hidden><div class="top"><h1>admin<b>@</b>prerak.barot</h1><span><a href="/">view site</a> &nbsp; <button id="out">log out</button></span></div>
+<div class="tabs"><button data-t="messages">messages</button><button data-t="projects">projects</button></div><div id="err2" style="color:var(--r)"></div><div id="view"></div></div>
+</div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let T=sessionStorage.getItem('t'),tab='messages',P=[],ed=null,M=[];
+async function api(p,method='GET',body){const r=await fetch('/api/admin'+p,{method,headers:{'Content-Type':'application/json',Authorization:'Bearer '+T},body:body&&JSON.stringify(body)});
+ if(r.status===401){out();throw new Error('session expired — log in again')}const d=await r.json();if(!r.ok)throw new Error(d.error||'error');return d}
+function out(){sessionStorage.removeItem('t');T=null;show()}
+function show(){$('#login').hidden=!!T;$('#app').hidden=!T;if(T)draw()}
+async function draw(){$('#err2').textContent='';document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===tab));
+ try{if(tab==='messages'){M=await api('/messages');$('#view').innerHTML=M.length?M.map(m=>`<div class="card ${m.read?'':'new'}"><b>${esc(m.name)}</b> · <a href="mailto:${esc(m.email)}">${esc(m.email)}</a><div class="m">${new Date(m.createdAt).toLocaleString()}</div><p style="white-space:pre-wrap;margin-top:10px">${esc(m.message)}</p><div class="act"><button data-a="read" data-id="${m._id}">mark ${m.read?'unread':'read'}</button><button class="d" data-a="del" data-id="${m._id}">delete</button></div></div>`).join(''):'<p class="m">no messages yet.</p>'}
+ else{P=await (await fetch('/api/projects')).json();const e=P.find(p=>p._id===ed)||{};
+  $('#view').innerHTML=P.map(p=>`<div class="card"><b>${esc(p.title)}</b> <span class="m">${p.featured?'· featured':''}</span><div class="act"><button data-a="edit" data-id="${p._id}">edit</button><button class="d" data-a="pdel" data-id="${p._id}">delete</button></div></div>`).join('')+
+  `<form id="pf" class="card"><b>${ed?'edit project':'add project'}</b><br><br><label>title</label><input name="title" required value="${esc(e.title)}"><label>description</label><textarea name="description" rows="4" required>${esc(e.description)}</textarea>
+  <label>tags (comma separated)</label><input name="tags" value="${esc((e.tags||[]).join(', '))}"><label>highlights (one per line — shown on the featured card)</label><textarea name="highlights" rows="4">${esc((e.highlights||[]).join('\n'))}</textarea>
+  <label>repo url</label><input name="repoUrl" value="${esc(e.repoUrl)}"><label>live url</label><input name="liveUrl" value="${esc(e.liveUrl)}"><label>badge (small cards)</label><input name="badge" value="${esc(e.badge||'LEARNING BUILD')}">
+  <label>order (lower = first)</label><input name="order" type="number" value="${e.order||0}"><label><input type="checkbox" name="featured" ${e.featured?'checked':''}>featured (only one shows large)</label><div class="act"><button class="p">${ed?'save changes':'add project'}</button>${ed?'<button type="button" data-a="cancel">cancel</button>':''}</div></form>`}
+ }catch(x){$('#err2').textContent=x.message}}
+$('#lf').onsubmit=async ev=>{ev.preventDefault();try{const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:$('#pw').value})});const d=await r.json();if(!r.ok)throw new Error(d.error);T=d.token;sessionStorage.setItem('t',T);$('#pw').value='';$('#err').textContent='';show()}catch(x){$('#err').textContent=x.message}};
+$('#out').onclick=out;
+document.querySelector('.tabs').onclick=ev=>{if(ev.target.dataset.t){tab=ev.target.dataset.t;ed=null;draw()}};
+$('#view').onclick=async ev=>{const b=ev.target.closest('button'),a=b&&b.dataset.a,id=b&&b.dataset.id;if(!a)return;
+ try{if(a==='read'){await api('/messages/'+id,'PATCH',{read:!M.find(m=>m._id===id).read})}
+ else if(a==='del'){if(!confirm('delete this message?'))return;await api('/messages/'+id,'DELETE')}
+ else if(a==='pdel'){if(!confirm('delete this project?'))return;await api('/projects/'+id,'DELETE')}
+ else if(a==='edit')ed=id;else if(a==='cancel')ed=null;draw()}catch(x){$('#err2').textContent=x.message}};
+$('#view').onsubmit=async ev=>{ev.preventDefault();const f=new FormData(ev.target),g=k=>f.get(k)||'';
+ const body={title:g('title'),description:g('description'),tags:g('tags').split(','),highlights:g('highlights').split('\n'),repoUrl:g('repoUrl'),liveUrl:g('liveUrl'),badge:g('badge'),order:g('order'),featured:f.has('featured')};
+ try{await(ed?api('/projects/'+ed,'PUT',body):api('/projects','POST',body));ed=null;draw()}catch(x){$('#err2').textContent=x.message}};
+show();
+</script></body></html>

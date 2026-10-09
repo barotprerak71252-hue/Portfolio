@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Prerak Barot — Computer Engineering student building backend systems with Java, Spring Boot and cloud tools.">
+<title>Prerak Barot — Backend &amp; Cloud Engineering</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;800&display=swap">
+<style>
+:root{--bg:#05080B;--panel:#0e151c;--line:rgba(130,170,160,.14);--ink:#e8f0eb;--mute:#8c9aa3;--dim:#55636c;--g:#3ef59a;--b:#5ccbff;--am:#e6b45a;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--disp:'Syne','Arial Black',Impact,sans-serif;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(90px + env(safe-area-inset-top,0px));background:var(--bg)}
+body{background:var(--bg) linear-gradient(var(--line) 1px,transparent 1px) 0 0/72px 72px;background-image:linear-gradient(rgba(130,170,160,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(130,170,160,.06) 1px,transparent 1px);background-size:72px 72px;color:var(--ink);font:300 18px/1.65 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px}
+.w{max-width:1240px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.eyebrow{font:500 14px var(--mono);letter-spacing:.2em;color:var(--g)}
+h2{font:800 clamp(32px,5.2vw,74px)/1.03 var(--disp);text-transform:uppercase;margin:14px 0 56px;max-width:1000px}
+section{padding:110px 0 30px}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(5,8,11,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:82px}
+.logo{display:flex;align-items:center;gap:16px;font:700 16px var(--mono)}
+.logo i{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--g);font-style:normal}
+.logo b{color:var(--g)}.logo small{font:400 11px var(--mono);color:var(--dim)}
+.links{display:flex;align-items:center;gap:34px;font:400 14px var(--mono);letter-spacing:.08em;color:var(--mute)}
+.links span{color:var(--g);font-weight:700;margin-right:6px;font-size:12px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:11px 20px;font:700 14px var(--mono);color:var(--ink)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:19px 34px;font:500 15px var(--mono);letter-spacing:.06em;border:1px solid var(--line);transition:transform .2s,background .2s}
+.btn.p{background:var(--g);color:#04150c;border-color:var(--g)}
+.btn:hover{transform:translateY(-2px)}
+/* hero */
+.hero{padding:70px 0 90px}
+.hero h1{font:800 clamp(50px,11.4vw,152px)/.98 var(--disp);text-transform:uppercase;margin:34px 0 0;letter-spacing:-.01em}
+.hero h1 span{display:block;color:transparent;-webkit-text-stroke:2px var(--ink)}
+.role{margin:44px 0 60px;font:500 clamp(14px,1.6vw,20px) var(--mono);letter-spacing:.3em;color:var(--g)}
+.hero .row{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero p{color:var(--mute);font-size:21px;max-width:660px}
+.cta{display:flex;flex-wrap:wrap;gap:16px;margin:36px 0}
+.open{display:flex;align-items:center;gap:14px;font:400 12.5px var(--mono);letter-spacing:.2em;color:var(--mute);text-transform:uppercase}
+.open i{width:10px;height:10px;border-radius:50%;background:var(--g);box-shadow:0 0 0 6px rgba(62,245,154,.15);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 12px rgba(62,245,154,0)}}
+/* terminal */
+.term{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative}
+.bar{display:flex;align-items:center;gap:9px;padding:17px 22px;border-bottom:1px solid var(--line);font:400 13px var(--mono);color:var(--dim)}
+.bar i{width:13px;height:13px;border-radius:50%;background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840;margin-right:12px}
+.bar em{font-style:normal;margin-left:auto}
+.tilt{transform:perspective(1000px) rotateX(3deg) rotateY(-7deg) rotate(-1.2deg);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(62,245,154,.05)}
+.tbody{padding:26px 28px;font:400 15px/2 var(--mono);color:var(--mute)}
+.tbody .l{opacity:0;animation:show .01s forwards;animation-delay:calc(var(--i)*.6s + .5s)}
+.tbody .c{color:var(--ink);font-weight:500}.tbody .c::before{content:"$ ";color:var(--g)}
+.tbody .ok{color:var(--g)}
+.tbody .cur::after{content:"";display:inline-block;width:9px;height:17px;background:var(--g);margin-left:6px;vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes show{to{opacity:1}}@keyframes blink{50%{opacity:0}}
+/* marquee */
+.mq{border-block:1px solid var(--line);overflow:hidden;padding:30px 0;background:rgba(5,8,11,.5)}
+.mq div{display:flex;width:max-content;animation:mq 34s linear infinite}
+.mq span{font:800 clamp(28px,3.4vw,44px) var(--disp);text-transform:uppercase;white-space:nowrap;padding:0 30px}
+.mq span:nth-child(even){color:var(--g);font-style:italic;padding:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:26px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:34px;transition:border-color .25s}
+.card:hover{border-color:rgba(62,245,154,.35)}
+.cmd{font:400 13px var(--mono);letter-spacing:.14em;color:var(--dim);margin-bottom:24px}
+.card p{color:var(--mute);margin-bottom:20px}.card p b{color:var(--ink);font-weight:500}.card p em{color:var(--g);font-style:normal}
+.c8{grid-column:span 8}.c4{grid-column:span 4}.c5{grid-column:span 5}.c7{grid-column:span 7}
+.card h3{font:600 clamp(20px,2.2vw,27px)/1.25 var(--disp);color:var(--ink)}
+.card .sub{color:var(--mute);font-size:16px;margin:12px 0 22px}
+.g{font:400 13px var(--mono);color:var(--g);letter-spacing:.06em}
+.focus li{list-style:none;font-size:20px;color:var(--ink);margin-bottom:14px}.focus li span{font:500 12px var(--mono);color:var(--g);margin-right:14px}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tags span{border:1px solid var(--line);border-radius:999px;padding:8px 17px;font:400 13px var(--mono);letter-spacing:.06em;color:var(--mute);background:rgba(255,255,255,.015)}
+/* skills */
+.grp{padding:26px 32px}.grp+.grp{border-top:1px solid var(--line)}
+.grp h4{font:500 14px var(--mono);letter-spacing:.2em;color:var(--g);margin-bottom:14px}
+.grp h4::before{content:"├── ";color:var(--g)}
+.sk{display:grid;grid-template-columns:170px 1fr 104px;align-items:center;gap:20px;padding:14px 0 14px 20px;font:500 15px var(--mono)}
+.trk{height:8px;border-radius:8px;background:#19222a;overflow:hidden}
+.trk i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--b),var(--g));transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
+.on .trk i{width:var(--w)}
+.bd{font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;text-align:center;border-radius:999px;padding:8px 0;color:var(--dim)}
+.bd.primary{background:var(--g);color:#04150c}.bd.core{border:1px solid var(--g);color:var(--g)}.bd.learning{border:1px solid var(--am);color:var(--am)}
+.note{margin-top:22px;font:400 13px var(--mono);color:var(--dim)}.note a{color:var(--g);border-bottom:1px solid var(--g)}
+/* projects */
+.badge{margin-left:auto;font:500 11px var(--mono);letter-spacing:.16em;border-radius:999px;padding:8px 16px}
+.badge.f{background:var(--g);color:#04150c}.badge.l{border:1px solid var(--am);color:var(--am)}
+.feat{border-top:1px solid rgba(62,245,154,.5)}
+.fb{display:grid;grid-template-columns:1.2fr 1fr;gap:0}.fb>div{padding:40px 48px}.fb>div+div{border-left:1px solid var(--line)}
+.fb h3{font:600 clamp(24px,2.6vw,34px)/1.2 var(--disp);margin-bottom:22px}
+.fb p{color:var(--mute);margin-bottom:26px}
+.tree{font:400 15px/2.3 var(--mono);color:var(--mute)}.tree .g{display:block;margin-bottom:10px;font-weight:500;letter-spacing:.14em}
+.tree li{list-style:none}.tree li::before{content:"├── ";color:var(--dim)}.tree li:last-child::before{content:"└── "}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
+.two .term{padding-bottom:6px}.two .in{padding:28px 32px 30px}.two h3{margin-bottom:14px}.two p{color:var(--mute);font-size:17px;margin-bottom:22px}.two .tags{margin-bottom:24px}
+/* contact */
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.ct h2{margin-bottom:44px}.ct p{color:var(--mute);max-width:520px}
+.ln{display:block;margin-top:26px;font:400 15px var(--mono);color:var(--mute)}.ln::before{content:"→ ";color:var(--g)}.ln:hover{color:var(--g)}
+form{padding:26px 32px 34px}
+label{display:block;font:400 13px var(--mono);letter-spacing:.1em;color:var(--dim);margin:20px 0 10px}
+input,textarea{width:100%;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:14px;padding:18px 20px;color:var(--ink);font:400 15px var(--mono)}
+input::placeholder,textarea::placeholder{color:#3c4a53}
+textarea{min-height:150px;resize:vertical}
+form .btn{width:100%;justify-content:center;margin-top:28px;cursor:pointer}
+#st{margin-top:14px;font:400 13px var(--mono);color:var(--mute);min-height:20px}
+footer{padding:80px 0 60px}
+@media(max-width:900px){.links a{display:none}.hero .row,.ct,.fb,.two{grid-template-columns:1fr}.ct{gap:40px}.c8,.c4,.c5,.c7{grid-column:span 12}.fb>div+div{border-left:0;border-top:1px solid var(--line)}.fb>div{padding:30px 26px}.tilt{transform:none}.sk{grid-template-columns:1fr 84px;padding-left:0}.sk .trk{grid-column:1/-1;order:3}.sk .bd{grid-row:1;grid-column:2}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tbody .l{opacity:1}.on .trk i,.trk i{width:var(--w)}}
+</style>
+</head>
+<body>
+<nav><div class="w">
+  <a class="logo" href="#top"><i>&gt;_</i><span>prerak<b>.</b>barot</span><small>v1.0</small></a>
+  <div class="links"><a href="#about"><span>01</span>about</a><a href="#skills"><span>02</span>skills</a><a href="#projects"><span>03</span>projects</a><a href="#contact"><span>04</span>contact</a>
+  <a class="pill gh" href="#" target="_blank" rel="noopener">github ↗</a></div>
+</div></nav>
+
+<main id="top">
+<header class="hero"><div class="w">
+  <div class="eyebrow">[ ~/prerak-barot — portfolio ]</div>
+  <h1>Prerak <span>Barot</span></h1>
+  <div class="role">→ backend developer × cloud engineering</div>
+  <div class="row">
+    <div>
+      <p>A Computer Engineering student at GEC Palanpur (GTU) building reliable REST APIs with Java &amp; Spring Boot, and deploying them with Docker and cloud tools.</p>
+      <div class="cta"><a class="btn p" href="#projects">view projects →</a><a class="btn gh" href="#" target="_blank" rel="noopener">github ↗</a></div>
+      <div class="open"><i></i>Open to internships &amp; collabs — batch of 2023</div>
+    </div>
+    <div class="term tilt" aria-label="Terminal intro">
+      <div class="bar"><i></i><i></i><i></i>prerak@gecpalanpur: ~</div>
+      <div class="tbody">
+        <div class="l c" style="--i:0">whoami</div><div class="l" style="--i:1">prerak barot — backend × cloud</div>
+        <div class="l c" style="--i:2">cat focus.txt</div><div class="l" style="--i:3">rest apis · spring boot · docker</div>
+        <div class="l c" style="--i:4">./deploy --env=production</div><div class="l ok" style="--i:5">[ ok ] build passed [ ok ] containers up</div>
+        <div class="l c cur" style="--i:6"></div>
+      </div>
+    </div>
+  </div>
+</div></header>
+
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+
+<section id="about"><div class="w">
+  <div class="eyebrow">// 01 — ~/about</div>
+  <h2>Studying engineering, building backends</h2>
+  <div class="grid">
+    <div class="card c8"><div class="cmd">$ whoami</div>
+      <p>I'm <b>Prerak Barot</b>, a Computer Engineering student at Government Engineering College, Palanpur (Gujarat Technological University). Somewhere between writing my first Java program and containerizing my first app, I found the side of software I care about most — <b>the part users never see</b>.</p>
+      <p>My interests sit at the intersection of backend development, cloud engineering and AI-integrated applications. I like the discipline of it: clean REST APIs, sensible database schemas, and deployments that don't fall over on a Monday morning.</p>
+      <p style="margin:0">I'm still a student, and I treat that as an advantage — I get to learn properly, build often, and break things safely. One project at a time, I'm working toward becoming an engineer who builds backend systems and cloud infrastructure that are <em>reliable, scalable and genuinely useful</em>.</p></div>
+    <div class="card c4"><div class="cmd">$ status --current</div>
+      <h3>B.E. Computer Engineering</h3><div class="sub">Government Engineering College, Palanpur — Gujarat Technological University</div><div class="g">batch of 2023</div></div>
+    <div class="card c5 focus"><div class="cmd">$ ls ~/focus</div><ul><li><span>01</span>Backend Development</li><li><span>02</span>Cloud Engineering</li><li><span>03</span>AI-integrated Apps</li></ul></div>
+    <div class="card c7"><div class="cmd">$ cat learning-path.txt</div><div class="tags" data-tags="Java,Spring Boot,REST APIs,Databases,Docker,Git &amp; GitHub,Cloud Platforms,AI Integration"></div></div>
+    <div class="card c5"><div class="cmd">$ ./goals --next</div><p style="margin:0;font-size:19px">Internships, open-source contributions, and going deeper into cloud — building real things with real constraints.</p></div>
+  </div>
+</div></section>
+
+<section id="skills"><div class="w">
+  <div class="eyebrow">// 02 — ~/skills</div>
+  <h2>Tools I reach for</h2>
+  <div class="term" id="tree"><div class="bar"><i></i><i></i><i></i>tree ~/skills</div><div id="groups"></div></div>
+</div></section>
+
+<section id="projects"><div class="w">
+  <div class="eyebrow">// 03 — ~/projects</div>
+  <h2>Things I've built</h2>
+  <div id="plist">
+  <div class="term feat"><div class="bar"><i></i><i></i><i></i>$ cat slotify.md<span class="badge f">FEATURED</span></div>
+    <div class="fb"><div>
+      <h3>Slotify — Slot Booking REST API</h3>
+      <p>Users register, log in, browse available slots, book them and cancel their own bookings. Every write operation is JWT-protected, double-bookings are blocked, and same-date overlaps are rejected with a 409. Built with Node.js, Express and MongoDB.</p>
+      <div class="tags" data-tags="node.js,express,mongodb,mongoose,jwt,bcrypt" style="margin-bottom:30px"></div>
+      <div class="cta" style="margin:0"><a class="btn p gh" href="#" target="_blank" rel="noopener">view repo ↗</a><a class="btn" href="#" target="_blank" rel="noopener">live api ↗</a></div>
+    </div><div><ul class="tree"><span class="g">├── what it does</span>
+      <li>jwt auth + bcrypt password hashing</li><li>slot crud · book · cancel with ownership rules</li><li>double-booking &amp; overlap conflict prevention (409)</li><li>/bookings/me — see your own bookings</li></ul></div></div>
+  </div>
+  <div class="two">
+    <div class="term"><div class="bar"><i></i><i></i><i></i>$ cat student-records-api.md<span class="badge l">LEARNING BUILD</span></div><div class="in">
+      <h3 class="card" style="all:unset;font:600 26px var(--disp);display:block;margin-bottom:14px">Student Records API</h3>
+      <p>A learning build — REST API for managing student records with CRUD, validation and JWT-based auth in Spring Boot.</p>
+      <div class="tags" data-tags="java,spring boot,rest,sql"></div><a class="g gh" href="#" target="_blank" rel="noopener" style="font-size:15px">view on github ↗</a></div></div>
+    <div class="term"><div class="bar"><i></i><i></i><i></i>$ cat containerized-deploy-lab.md<span class="badge l">LEARNING BUILD</span></div><div class="in">
+      <h3 class="card" style="all:unset;font:600 26px var(--disp);display:block;margin-bottom:14px">Containerized Deploy Lab</h3>
+      <p>A learning build — packaging a Spring Boot service into lean Docker images and orchestrating it with docker-compose.</p>
+      <div class="tags" data-tags="docker,docker-compose,spring boot"></div><a class="g gh" href="#" target="_blank" rel="noopener" style="font-size:15px">view on github ↗</a></div></div>
+  </div>
+  </div>
+  <div class="note">* learning builds are practice projects — full history on <a class="gh" href="#" target="_blank" rel="noopener">github</a>.</div>
+</div></section>
+
+<section id="contact"><div class="w"><div class="ct">
+  <div>
+    <div class="eyebrow">// 04 — ~/contact</div>
+    <h2>Let's build something reliable</h2>
+    <p>Internships, collaborations, or just a conversation about backends and cloud — my inbox is open. Based in Palanpur, Gujarat, India.</p>
+    <a class="ln gh" href="#" target="_blank" rel="noopener">github/ barotprerak71252-hue</a>
+    <a class="ln" href="https://www.linkedin.com/in/prerak-barot" target="_blank" rel="noopener">linkedin/ prerak-barot</a>
+  </div>
+  <div class="term"><div class="bar"><i></i><i></i><i></i>$ ./contact --send</div>
+    <form id="f">
+      <label for="n">// name</label><input id="n" placeholder="your name" required autocomplete="name">
+      <label for="e">// email</label><input id="e" type="email" placeholder="you@example.com" required autocomplete="email">
+      <label for="m">// message</label><textarea id="m" placeholder="let's build something reliable..." required></textarea>
+      <button class="btn p" type="submit">send message →</button><div id="st" role="status"></div>
+    </form>
+  </div>
+</div></div></section>
+<footer></footer>
+</main>
+
+<script>
+const GH="https://github.com/barotprerak71252-hue";      // GitHub profile
+document.querySelectorAll('a.gh').forEach(a=>a.href=GH);
+document.querySelectorAll('[data-tags]').forEach(e=>e.innerHTML=e.dataset.tags.split(',').map(t=>'<span>'+t+'</span>').join(''));
+const items=['Java','Spring Boot','REST APIs','Databases','Docker','Git & GitHub','Cloud Platforms','AI Integration'];
+const set=items.map(t=>'<span>'+t.replace('&','&amp;')+'</span><span>//</span>').join('');
+document.getElementById('mq').innerHTML=set+set;
+const data=[["languages",[["java",85,"primary"],["python",70],["html / css",65]]],["backend & data",[["spring boot",75,"core"],["rest api design",75],["node / express",65],["sql / databases",65]]],["tools & platforms",[["git & github",85],["docker",60],["cloud platforms",45,"learning"]]],["exploring",[["ai integration",40,"learning"]]]];
+document.getElementById('groups').innerHTML=data.map(([g,r])=>'<div class="grp"><h4>'+g.replace('&','&amp;')+'</h4>'+r.map(([n,v,b])=>'<div class="sk"><span>'+n+'</span><div class="trk"><i style="--w:'+v+'%"></i></div><span class="bd '+(b||'')+'">'+(b||'·')+'</span></div>').join('')+'</div>').join('');
+const tree=document.getElementById('tree');
+new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){tree.classList.add('on');o.disconnect()}},{threshold:.25}).observe(tree);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const tg=(t,st)=>'<div class="tags"'+(st?' style="'+st+'"':'')+'>'+(t||[]).map(x=>'<span>'+esc(x)+'</span>').join('')+'</div>';
+const lk=(u,t,c)=>u?'<a class="'+c+'" href="'+esc(u)+'" target="_blank" rel="noopener">'+t+' ↗</a>':'';
+const bar=(p,b,c)=>'<div class="bar"><i></i><i></i><i></i>$ cat '+esc(p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''))+'.md<span class="badge '+c+'">'+esc(b)+'</span></div>';
+fetch('/api/projects').then(r=>r.json()).then(ps=>{
+  if(!Array.isArray(ps)||!ps.length)return;
+  const f=ps.find(p=>p.featured),rest=ps.filter(p=>p!==f);let h='';
+  if(f)h+='<div class="term feat">'+bar(f,'FEATURED','f')+'<div class="fb"><div><h3>'+esc(f.title)+'</h3><p>'+esc(f.description)+'</p>'+tg(f.tags,'margin-bottom:30px')+'<div class="cta" style="margin:0">'+lk(f.repoUrl,'view repo','btn p')+lk(f.liveUrl,'live api','btn')+'</div></div><div><ul class="tree"><span class="g">├── what it does</span>'+(f.highlights||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></div></div>';
+  if(rest.length)h+='<div class="two">'+rest.map(p=>'<div class="term">'+bar(p,p.badge||'PROJECT','l')+'<div class="in"><h3 style="font:600 26px var(--disp)">'+esc(p.title)+'</h3><p>'+esc(p.description)+'</p>'+tg(p.tags)+lk(p.repoUrl,'view on github','g')+'</div></div>').join('')+'</div>';
+  document.getElementById('plist').innerHTML=h;
+}).catch(()=>{});
+document.getElementById('f').addEventListener('submit',async ev=>{
+  ev.preventDefault();const st=document.getElementById('st'),b=ev.target.querySelector('button');b.disabled=true;st.textContent='sending…';
+  try{const r=await fetch('/api/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:document.getElementById('n').value,email:document.getElementById('e').value,message:document.getElementById('m').value})});
+  const d=await r.json();if(!r.ok)throw new Error(d.error||'failed');ev.target.reset();st.textContent='[ ok ] message sent — thanks!'}
+  catch(x){st.textContent='[ error ] '+x.message}
+  b.disabled=false;
+});
+</script>
+</body>
+</html>
