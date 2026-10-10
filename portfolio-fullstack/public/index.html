@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Prerak Barot — Computer Engineering student building backend systems with Java, Spring Boot and cloud tools.">
-<title>Prerak Barot — Backend &amp; Cloud Engineering</title>
+<title>Prerak Barot — portfolio</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;800&display=swap">
 <style>
 :root{--bg:#05080B;--panel:#0e151c;--line:rgba(130,170,160,.14);--ink:#e8f0eb;--mute:#8c9aa3;--dim:#55636c;--g:#3ef59a;--b:#5ccbff;--am:#e6b45a;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--disp:'Syne','Arial Black',Impact,sans-serif;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -109,20 +109,64 @@ form .btn{width:100%;justify-content:center;margin-top:28px;cursor:pointer}
 footer{padding:80px 0 60px}
 @media(max-width:900px){.links a{display:none}.hero .row,.ct,.fb,.two{grid-template-columns:1fr}.ct{gap:40px}.c8,.c4,.c5,.c7{grid-column:span 12}.fb>div+div{border-left:0;border-top:1px solid var(--line)}.fb>div{padding:30px 26px}.tilt{transform:none}.sk{grid-template-columns:1fr 84px;padding-left:0}.sk .trk{grid-column:1/-1;order:3}.sk .bd{grid-row:1;grid-column:2}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tbody .l{opacity:1}.on .trk i,.trk i{width:var(--w)}}
+
+
+.menu-toggle {
+  display: block;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 8px 12px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    flex-direction: column;
+    gap: 18px;
+    padding: 20px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    z-index: 1000;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+}
+
 </style>
 </head>
 <body>
-<nav><div class="w">
-  <a class="logo" href="#top"><i>&gt;_</i><span>prerak<b>.</b>barot</span><small>v1.0</small></a>
-  <div class="links"><a href="#about"><span>01</span>about</a><a href="#skills"><span>02</span>skills</a><a href="#projects"><span>03</span>projects</a><a href="#contact"><span>04</span>contact</a>
-  <a class="pill gh" href="#" target="_blank" rel="noopener">github ↗</a></div>
-</div></nav>
+<nav class="nav-menu" id="navMenu">
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+</nav>
+
+<button
+  class="menu-toggle"
+  id="menuToggle"
+  aria-label="Open navigation menu"
+  aria-expanded="false"
+>
+  ☰
+</button>
 
 <main id="top">
 <header class="hero"><div class="w">
-  <div class="eyebrow">[ ~/prerak-barot — portfolio ]</div>
+  <div class="eyebrow">[ ~/portfolio ]</div>
   <h1>Prerak <span>Barot</span></h1>
-  <div class="role">→ backend developer × cloud engineering</div>
+  <div class="role">→ backend developer × AI&amp;ML × cloud engineering</div>
   <div class="row">
     <div>
       <p>A Computer Engineering student at GEC Palanpur (GTU) building reliable REST APIs with Java &amp; Spring Boot, and deploying them with Docker and cloud tools.</p>
@@ -198,7 +242,7 @@ footer{padding:80px 0 60px}
     <h2>Let's build something reliable</h2>
     <p>Internships, collaborations, or just a conversation about backends and cloud — my inbox is open. Based in Palanpur, Gujarat, India.</p>
     <a class="ln gh" href="#" target="_blank" rel="noopener">github/ barotprerak71252-hue</a>
-    <a class="ln" href="https://www.linkedin.com/in/prerak-barot" target="_blank" rel="noopener">linkedin/ prerak-barot</a>
+    <a class="ln" href="https://www.linkedin.com/in/gj-cp-gecpl-2027-004-prerakbarot-615760377" target="_blank" rel="noopener">linkedin/ prerak-barot</a>
   </div>
   <div class="term"><div class="bar"><i></i><i></i><i></i>$ ./contact --send</div>
     <form id="f">
@@ -214,7 +258,9 @@ footer{padding:80px 0 60px}
 
 <script>
 const GH="https://github.com/barotprerak71252-hue";      // GitHub profile
+const LI = "https://www.linkedin.com/in/gj-cp-gecpl-2027-004-prerakbarot-615760377";     // LINKED IN url
 document.querySelectorAll('a.gh').forEach(a=>a.href=GH);
+document.querySelectorAll("a.li").forEach(a => a.href = LI);
 document.querySelectorAll('[data-tags]').forEach(e=>e.innerHTML=e.dataset.tags.split(',').map(t=>'<span>'+t+'</span>').join(''));
 const items=['Java','Spring Boot','REST APIs','Databases','Docker','Git & GitHub','Cloud Platforms','AI Integration'];
 const set=items.map(t=>'<span>'+t.replace('&','&amp;')+'</span><span>//</span>').join('');
@@ -242,5 +288,30 @@ document.getElementById('f').addEventListener('submit',async ev=>{
   b.disabled=false;
 });
 </script>
+
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const navMenu = document.getElementById("navMenu");
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navMenu.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+  });
+
+  navMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation menu");
+      menuToggle.textContent = "☰";
+    });
+  });
+</script>
+
 </body>
 </html>
