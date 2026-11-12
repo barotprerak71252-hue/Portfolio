@@ -1,317 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Prerak Barot — Computer Engineering student building backend systems with Java, Spring Boot and cloud tools.">
-<title>Prerak Barot — portfolio</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;800&display=swap">
-<style>
-:root{--bg:#05080B;--panel:#0e151c;--line:rgba(130,170,160,.14);--ink:#e8f0eb;--mute:#8c9aa3;--dim:#55636c;--g:#3ef59a;--b:#5ccbff;--am:#e6b45a;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--disp:'Syne','Arial Black',Impact,sans-serif;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*,*::before,*::after{box-sizing:inherit;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:calc(90px + env(safe-area-inset-top,0px));background:var(--bg)}
-body{background:var(--bg) linear-gradient(var(--line) 1px,transparent 1px) 0 0/72px 72px;background-image:linear-gradient(rgba(130,170,160,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(130,170,160,.06) 1px,transparent 1px);background-size:72px 72px;color:var(--ink);font:300 18px/1.65 Inter,system-ui,sans-serif;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--g);outline-offset:3px}
-.w{max-width:1240px;margin:0 auto;padding:0 24px}
-.mono{font-family:var(--mono)}
-.eyebrow{font:500 14px var(--mono);letter-spacing:.2em;color:var(--g)}
-h2{font:800 clamp(32px,5.2vw,74px)/1.03 var(--disp);text-transform:uppercase;margin:14px 0 56px;max-width:1000px}
-section{padding:110px 0 30px}
-/* nav */
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(5,8,11,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-nav .w{display:flex;align-items:center;justify-content:space-between;height:82px}
-.logo{display:flex;align-items:center;gap:16px;font:700 16px var(--mono)}
-.logo i{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--g);font-style:normal}
-.logo b{color:var(--g)}.logo small{font:400 11px var(--mono);color:var(--dim)}
-.links{display:flex;align-items:center;gap:34px;font:400 14px var(--mono);letter-spacing:.08em;color:var(--mute)}
-.links span{color:var(--g);font-weight:700;margin-right:6px;font-size:12px}
-.pill{border:1px solid var(--line);border-radius:999px;padding:11px 20px;font:700 14px var(--mono);color:var(--ink)}
-/* buttons */
-.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:19px 34px;font:500 15px var(--mono);letter-spacing:.06em;border:1px solid var(--line);transition:transform .2s,background .2s}
-.btn.p{background:var(--g);color:#04150c;border-color:var(--g)}
-.btn:hover{transform:translateY(-2px)}
-/* hero */
-.hero{padding:70px 0 90px}
-.hero h1{font:800 clamp(50px,11.4vw,152px)/.98 var(--disp);text-transform:uppercase;margin:34px 0 0;letter-spacing:-.01em}
-.hero h1 span{display:block;color:transparent;-webkit-text-stroke:2px var(--ink)}
-.role{margin:44px 0 60px;font:500 clamp(14px,1.6vw,20px) var(--mono);letter-spacing:.3em;color:var(--g)}
-.hero .row{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
-.hero p{color:var(--mute);font-size:21px;max-width:660px}
-.cta{display:flex;flex-wrap:wrap;gap:16px;margin:36px 0}
-.open{display:flex;align-items:center;gap:14px;font:400 12.5px var(--mono);letter-spacing:.2em;color:var(--mute);text-transform:uppercase}
-.open i{width:10px;height:10px;border-radius:50%;background:var(--g);box-shadow:0 0 0 6px rgba(62,245,154,.15);animation:pulse 2s infinite}
-@keyframes pulse{50%{box-shadow:0 0 0 12px rgba(62,245,154,0)}}
-/* terminal */
-.term{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative}
-.bar{display:flex;align-items:center;gap:9px;padding:17px 22px;border-bottom:1px solid var(--line);font:400 13px var(--mono);color:var(--dim)}
-.bar i{width:13px;height:13px;border-radius:50%;background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840;margin-right:12px}
-.bar em{font-style:normal;margin-left:auto}
-.tilt{transform:perspective(1000px) rotateX(3deg) rotateY(-7deg) rotate(-1.2deg);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(62,245,154,.05)}
-.tbody{padding:26px 28px;font:400 15px/2 var(--mono);color:var(--mute)}
-.tbody .l{opacity:0;animation:show .01s forwards;animation-delay:calc(var(--i)*.6s + .5s)}
-.tbody .c{color:var(--ink);font-weight:500}.tbody .c::before{content:"$ ";color:var(--g)}
-.tbody .ok{color:var(--g)}
-.tbody .cur::after{content:"";display:inline-block;width:9px;height:17px;background:var(--g);margin-left:6px;vertical-align:-3px;animation:blink 1s steps(1) infinite}
-@keyframes show{to{opacity:1}}@keyframes blink{50%{opacity:0}}
-/* marquee */
-.mq{border-block:1px solid var(--line);overflow:hidden;padding:30px 0;background:rgba(5,8,11,.5)}
-.mq div{display:flex;width:max-content;animation:mq 34s linear infinite}
-.mq span{font:800 clamp(28px,3.4vw,44px) var(--disp);text-transform:uppercase;white-space:nowrap;padding:0 30px}
-.mq span:nth-child(even){color:var(--g);font-style:italic;padding:0}
-@keyframes mq{to{transform:translateX(-50%)}}
-/* cards */
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:26px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:34px;transition:border-color .25s}
-.card:hover{border-color:rgba(62,245,154,.35)}
-.cmd{font:400 13px var(--mono);letter-spacing:.14em;color:var(--dim);margin-bottom:24px}
-.card p{color:var(--mute);margin-bottom:20px}.card p b{color:var(--ink);font-weight:500}.card p em{color:var(--g);font-style:normal}
-.c8{grid-column:span 8}.c4{grid-column:span 4}.c5{grid-column:span 5}.c7{grid-column:span 7}
-.card h3{font:600 clamp(20px,2.2vw,27px)/1.25 var(--disp);color:var(--ink)}
-.card .sub{color:var(--mute);font-size:16px;margin:12px 0 22px}
-.g{font:400 13px var(--mono);color:var(--g);letter-spacing:.06em}
-.focus li{list-style:none;font-size:20px;color:var(--ink);margin-bottom:14px}.focus li span{font:500 12px var(--mono);color:var(--g);margin-right:14px}
-.tags{display:flex;flex-wrap:wrap;gap:10px}
-.tags span{border:1px solid var(--line);border-radius:999px;padding:8px 17px;font:400 13px var(--mono);letter-spacing:.06em;color:var(--mute);background:rgba(255,255,255,.015)}
-/* skills */
-.grp{padding:26px 32px}.grp+.grp{border-top:1px solid var(--line)}
-.grp h4{font:500 14px var(--mono);letter-spacing:.2em;color:var(--g);margin-bottom:14px}
-.grp h4::before{content:"├── ";color:var(--g)}
-.sk{display:grid;grid-template-columns:170px 1fr 104px;align-items:center;gap:20px;padding:14px 0 14px 20px;font:500 15px var(--mono)}
-.trk{height:8px;border-radius:8px;background:#19222a;overflow:hidden}
-.trk i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--b),var(--g));transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
-.on .trk i{width:var(--w)}
-.bd{font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;text-align:center;border-radius:999px;padding:8px 0;color:var(--dim)}
-.bd.primary{background:var(--g);color:#04150c}.bd.core{border:1px solid var(--g);color:var(--g)}.bd.learning{border:1px solid var(--am);color:var(--am)}
-.note{margin-top:22px;font:400 13px var(--mono);color:var(--dim)}.note a{color:var(--g);border-bottom:1px solid var(--g)}
-/* projects */
-.badge{margin-left:auto;font:500 11px var(--mono);letter-spacing:.16em;border-radius:999px;padding:8px 16px}
-.badge.f{background:var(--g);color:#04150c}.badge.l{border:1px solid var(--am);color:var(--am)}
-.feat{border-top:1px solid rgba(62,245,154,.5)}
-.fb{display:grid;grid-template-columns:1.2fr 1fr;gap:0}.fb>div{padding:40px 48px}.fb>div+div{border-left:1px solid var(--line)}
-.fb h3{font:600 clamp(24px,2.6vw,34px)/1.2 var(--disp);margin-bottom:22px}
-.fb p{color:var(--mute);margin-bottom:26px}
-.tree{font:400 15px/2.3 var(--mono);color:var(--mute)}.tree .g{display:block;margin-bottom:10px;font-weight:500;letter-spacing:.14em}
-.tree li{list-style:none}.tree li::before{content:"├── ";color:var(--dim)}.tree li:last-child::before{content:"└── "}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
-.two .term{padding-bottom:6px}.two .in{padding:28px 32px 30px}.two h3{margin-bottom:14px}.two p{color:var(--mute);font-size:17px;margin-bottom:22px}.two .tags{margin-bottom:24px}
-/* contact */
-.ct{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
-.ct h2{margin-bottom:44px}.ct p{color:var(--mute);max-width:520px}
-.ln{display:block;margin-top:26px;font:400 15px var(--mono);color:var(--mute)}.ln::before{content:"→ ";color:var(--g)}.ln:hover{color:var(--g)}
-form{padding:26px 32px 34px}
-label{display:block;font:400 13px var(--mono);letter-spacing:.1em;color:var(--dim);margin:20px 0 10px}
-input,textarea{width:100%;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:14px;padding:18px 20px;color:var(--ink);font:400 15px var(--mono)}
-input::placeholder,textarea::placeholder{color:#3c4a53}
-textarea{min-height:150px;resize:vertical}
-form .btn{width:100%;justify-content:center;margin-top:28px;cursor:pointer}
-#st{margin-top:14px;font:400 13px var(--mono);color:var(--mute);min-height:20px}
-footer{padding:80px 0 60px}
-@media(max-width:900px){.links a{display:none}.hero .row,.ct,.fb,.two{grid-template-columns:1fr}.ct{gap:40px}.c8,.c4,.c5,.c7{grid-column:span 12}.fb>div+div{border-left:0;border-top:1px solid var(--line)}.fb>div{padding:30px 26px}.tilt{transform:none}.sk{grid-template-columns:1fr 84px;padding-left:0}.sk .trk{grid-column:1/-1;order:3}.sk .bd{grid-row:1;grid-column:2}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tbody .l{opacity:1}.on .trk i,.trk i{width:var(--w)}}
-
-
-.menu-toggle {
-  display: block;
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--text);
-  padding: 8px 12px;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    flex-direction: column;
-    gap: 18px;
-    padding: 20px;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    z-index: 1000;
-  }
-
-  .nav-menu.open {
-    display: flex;
-  }
-}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070b16">
+  <meta name="description" content="Prerak Barot — Computer Engineering student focused on AI, machine learning, and backend development.">
+  <title>Prerak Barot | AI/ML × Backend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070b16;
+      --panel: #0d1427;
+      --panel-2: #101a31;
+      --line: rgba(149, 169, 255, .17);
+      --ink: #f2f5ff;
+      --mute: #a2aec9;
+      --dim: #7180a3;
+      --purple: #8b72ff;
+      --blue: #5d8cff;
+      --cyan: #62e2ff;
+      --mono: 'DM Mono', ui-monospace, monospace;
+      --display: 'Space Grotesk', Inter, sans-serif;
+      color-scheme: dark;
+      box-sizing: border-box;
+    }
+    *, *::before, *::after { box-sizing: inherit; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; background: var(--bg); }
+    body {
+      margin: 0; color: var(--ink); overflow-x: hidden;
+      font: 400 16px/1.7 Inter, system-ui, sans-serif;
+      background: radial-gradient(ellipse at 80% 8%, rgba(93,140,255,.13), transparent 34%),
+                  radial-gradient(ellipse at 12% 30%, rgba(139,114,255,.10), transparent 28%), var(--bg);
+    }
+    body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: .35;
+      background-image: linear-gradient(rgba(149,169,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(149,169,255,.055) 1px, transparent 1px); background-size: 64px 64px; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .mono, .eyebrow, .nav-links, .btn, .terminal-bar, .terminal-body, .tag, .small-label { font-family: var(--mono); }
+    .eyebrow { color: var(--cyan); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+    .section { padding: 92px 0 24px; }
+    .section-heading { margin: 10px 0 34px; font: 700 clamp(30px, 5vw, 54px)/1.08 var(--display); letter-spacing: -.04em; }
+    .muted { color: var(--mute); }
+    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(7,11,22,.82); border-bottom: 1px solid var(--line); backdrop-filter: blur(18px); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font: 700 17px var(--display); white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid rgba(139,114,255,.55); border-radius: 12px; color: var(--cyan); background: linear-gradient(135deg, rgba(139,114,255,.2), rgba(93,140,255,.08)); }
+    .nav-links { display: flex; align-items: center; gap: clamp(14px, 2.3vw, 28px); color: var(--mute); font-size: 12px; }
+    .nav-links a:hover, .nav-links a.active { color: var(--cyan); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .menu-toggle { display: none; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--ink); padding: 8px 12px; cursor: pointer; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 999px; padding: 12px 19px; color: var(--ink); font-size: 12px; font-weight: 500; transition: transform .2s, border-color .2s, background .2s; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(98,226,255,.6); }
+    .btn-primary { color: white; border-color: transparent; background: linear-gradient(110deg, #4d77ff, #8b55f6); box-shadow: 0 8px 30px rgba(93,111,255,.22); }
+    .btn-quiet { background: rgba(255,255,255,.025); }
+    .hero { padding: 76px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(36px, 6vw, 78px); }
+    .hero-kicker { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; color: var(--mute); background: rgba(255,255,255,.025); font: 12px var(--mono); }
+    .hero-kicker span { color: var(--cyan); }
+    h1 { margin: 24px 0 14px; font: 700 clamp(52px, 8.1vw, 96px)/.98 var(--display); letter-spacing: -.065em; }
+    h1 .gradient { display: block; color: transparent; background: linear-gradient(100deg, #f3f5ff 5%, #8db4ff 46%, #b18aff 90%); -webkit-background-clip: text; background-clip: text; }
+    .hero-role { margin: 22px 0 14px; color: var(--cyan); font: 500 clamp(13px, 1.7vw, 16px) var(--mono); }
+    .hero-copy { max-width: 620px; color: var(--mute); font-size: clamp(16px, 1.7vw, 18px); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 24px; }
+    .socials { display: flex; flex-wrap: wrap; gap: 18px; color: var(--mute); font: 12px var(--mono); }
+    .socials a:hover { color: var(--cyan); }
+    .visual { min-height: 360px; position: relative; display: grid; place-items: center; }
+    .glow { position: absolute; width: 72%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(93,140,255,.24), rgba(139,114,255,.12) 40%, transparent 70%); filter: blur(10px); }
+    .orbit { position: absolute; width: 78%; aspect-ratio: 1; border: 1px solid rgba(139,114,255,.28); border-radius: 50%; transform: rotate(-25deg) scaleY(.6); }
+    .orbit.two { width: 92%; border-color: rgba(98,226,255,.19); transform: rotate(48deg) scaleY(.57); }
+    .code-window { position: relative; width: min(100%, 470px); border: 1px solid rgba(139,157,255,.28); border-radius: 18px; overflow: hidden; background: rgba(10,17,35,.9); box-shadow: 0 25px 80px rgba(0,0,0,.32), 0 0 60px rgba(93,140,255,.09); transform: rotate(-2deg); }
+    .terminal-bar { display: flex; align-items: center; gap: 7px; padding: 14px 16px; border-bottom: 1px solid var(--line); color: var(--dim); font-size: 11px; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #ff6d79; }.dot:nth-child(2) { background: #ffcc70; }.dot:nth-child(3) { background: #63e6a5; }
+    .terminal-bar .path { margin-left: 8px; }
+    .terminal-body { padding: 24px; color: var(--mute); font-size: 12px; line-height: 2.2; }
+    .terminal-body .prompt { color: var(--cyan); }.terminal-body .value { color: #d8d5ff; }.terminal-body .success { color: #77e9bd; }
+    .floating-chip { position: absolute; padding: 10px 13px; border: 1px solid var(--line); border-radius: 12px; color: #dce5ff; background: rgba(13,20,39,.92); box-shadow: 0 12px 32px rgba(0,0,0,.2); font: 11px var(--mono); }
+    .chip-ai { top: 10%; right: 0; }.chip-api { bottom: 13%; left: -2%; }.chip-python { bottom: 3%; right: 12%; }
+    .status-line { display: flex; align-items: center; gap: 10px; color: var(--mute); font: 11px var(--mono); }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #69e6a6; box-shadow: 0 0 0 5px rgba(105,230,166,.1); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 38px; }
+    .stat { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: rgba(13,20,39,.66); }
+    .stat strong { display: block; font: 600 18px var(--display); }.stat span { color: var(--dim); font-size: 11px; }
+    .ticker { overflow: hidden; border-block: 1px solid var(--line); background: rgba(13,20,39,.42); }
+    .ticker-track { display: flex; width: max-content; animation: ticker 35s linear infinite; padding: 18px 0; }
+    .ticker span { padding: 0 22px; color: var(--mute); font: 600 15px var(--display); white-space: nowrap; }.ticker span:nth-child(odd) { color: var(--cyan); }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+    .about-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 22px; }
+    .panel { border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(145deg, rgba(16,26,49,.92), rgba(10,16,32,.92)); }
+    .panel-pad { padding: clamp(22px, 3vw, 32px); }
+    .panel-label { color: var(--cyan); font: 11px var(--mono); letter-spacing: .1em; margin-bottom: 18px; }
+    .about-copy p { color: var(--mute); margin: 0 0 16px; }.about-copy p:last-child { margin-bottom: 0; }
+    .education h3 { margin: 0 0 8px; font: 600 22px var(--display); }.education p { margin: 0 0 14px; color: var(--mute); font-size: 14px; }
+    .edu-meta { border-top: 1px solid var(--line); padding-top: 14px; color: var(--cyan); font: 11px var(--mono); }
+    .focus-list { display: grid; gap: 12px; }.focus-item { display: flex; gap: 13px; align-items: flex-start; }.focus-icon { flex: 0 0 36px; display: grid; place-items: center; height: 36px; border: 1px solid var(--line); border-radius: 11px; color: var(--cyan); background: rgba(93,140,255,.08); }.focus-item strong { display: block; font: 600 15px var(--display); }.focus-item span { color: var(--mute); font-size: 12px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .skill-card { padding: 23px; border: 1px solid var(--line); border-radius: 16px; background: rgba(13,20,39,.78); }
+    .skill-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 18px; border-radius: 13px; color: var(--cyan); background: linear-gradient(135deg, rgba(93,140,255,.2), rgba(139,114,255,.15)); font-size: 20px; }
+    .skill-card h3 { margin: 0 0 8px; font: 600 18px var(--display); }.skill-card p { margin: 0 0 16px; color: var(--mute); font-size: 13px; }.tags { display: flex; flex-wrap: wrap; gap: 7px; }.tag { padding: 5px 8px; border: 1px solid var(--line); border-radius: 999px; color: #b9c7e8; font-size: 10px; }
+    .project-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+    .project-card { display: flex; flex-direction: column; min-height: 270px; padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(145deg, rgba(16,26,49,.92), rgba(10,16,32,.95)); transition: transform .2s, border-color .2s; }
+    .project-card:hover { transform: translateY(-4px); border-color: rgba(98,226,255,.4); }
+    .project-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; }.project-symbol { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 12px; color: var(--cyan); background: rgba(93,140,255,.1); font-size: 18px; }.project-status { color: var(--cyan); font: 10px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .project-card h3 { margin: 0 0 9px; font: 600 22px var(--display); }.project-card p { margin: 0 0 18px; color: var(--mute); font-size: 14px; }.project-card .tags { margin-bottom: 22px; }.project-links { display: flex; gap: 16px; margin-top: auto; font: 12px var(--mono); color: var(--cyan); }.project-links a:hover { color: white; }
+    .resume-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }.resume-card { display: flex; align-items: center; gap: 18px; padding: 26px; }.resume-icon { display: grid; place-items: center; width: 52px; height: 52px; flex: 0 0 52px; border-radius: 15px; color: var(--cyan); background: rgba(93,140,255,.13); font-size: 23px; }.resume-card h3 { margin: 0 0 4px; font: 600 19px var(--display); }.resume-card p { margin: 0; color: var(--mute); font-size: 12px; }.resume-card .btn { margin-left: auto; white-space: nowrap; }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 24px; align-items: start; }.contact-intro { color: var(--mute); max-width: 450px; }.contact-links { display: grid; gap: 12px; margin-top: 24px; }.contact-link { display: flex; align-items: center; gap: 12px; color: var(--mute); font: 12px var(--mono); }.contact-link:hover { color: var(--cyan); }.contact-link .link-icon { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 10px; color: var(--cyan); }
+    .contact-form { padding: 24px; }.contact-form label { display: block; margin: 14px 0 7px; color: var(--mute); font: 11px var(--mono); }.contact-form input, .contact-form textarea { width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 11px; color: var(--ink); background: rgba(255,255,255,.025); outline: none; }.contact-form input:focus, .contact-form textarea:focus { border-color: rgba(98,226,255,.65); }.contact-form textarea { min-height: 130px; resize: vertical; }.contact-form .btn { width: 100%; margin-top: 18px; }.form-status { min-height: 22px; margin-top: 10px; color: var(--mute); font: 11px var(--mono); }
+    footer { margin-top: 86px; padding: 28px 0; border-top: 1px solid var(--line); color: var(--dim); font: 11px var(--mono); }.footer-inner { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }.footer-inner a { color: var(--mute); }.footer-inner a:hover { color: var(--cyan); }
+    @media (max-width: 900px) { .nav-links { gap: 12px; }.nav-links a { font-size: 11px; }.nav-actions .nav-resume { display: none; }.hero-grid { grid-template-columns: 1fr; }.hero-copy { max-width: 720px; }.visual { min-height: 320px; }.about-grid, .contact-grid { grid-template-columns: 1fr; }.skills-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 680px) { .wrap { width: min(100% - 28px, 1160px); }.nav { min-height: 68px; }.menu-toggle { display: inline-flex; }.nav-links { display: none; position: absolute; top: 68px; left: 14px; right: 14px; padding: 16px; flex-direction: column; align-items: stretch; gap: 0; border: 1px solid var(--line); border-radius: 14px; background: #0c1325; box-shadow: 0 20px 50px rgba(0,0,0,.4); }.nav-links.open { display: flex; }.nav-links a { padding: 12px; font-size: 12px; }.nav-actions .nav-resume { display: inline-flex; padding: 10px 12px; }.hero { padding: 55px 0 48px; }.hero h1 { font-size: clamp(49px, 14vw, 76px); }.hero-role { line-height: 1.7; }.hero-copy { font-size: 15px; }.visual { min-height: 290px; }.code-window { transform: none; }.terminal-body { padding: 18px; font-size: 10px; }.floating-chip { font-size: 9px; padding: 8px 9px; }.chip-api { left: 0; }.stats { gap: 8px; }.stat { padding: 12px; }.stat strong { font-size: 15px; }.stat span { font-size: 9px; }.section { padding-top: 66px; }.section-heading { margin-bottom: 24px; }.skills-grid, .project-list, .resume-grid { grid-template-columns: 1fr; }.resume-card { flex-wrap: wrap; }.resume-card .btn { margin-left: 0; }.ticker span { font-size: 13px; }.footer-inner { flex-direction: column; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }
+  </style>
 </head>
 <body>
-<nav class="nav-menu" id="navMenu">
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-</nav>
-
-<button
-  class="menu-toggle"
-  id="menuToggle"
-  aria-label="Open navigation menu"
-  aria-expanded="false"
->
-  ☰
-</button>
-
-<main id="top">
-<header class="hero"><div class="w">
-  <div class="eyebrow">[ ~/portfolio ]</div>
-  <h1>Prerak <span>Barot</span></h1>
-  <div class="role">→ backend developer × AI&amp;ML × cloud engineering</div>
-  <div class="row">
-    <div>
-      <p>A Computer Engineering student at GEC Palanpur (GTU) building reliable REST APIs with Java &amp; Spring Boot, and deploying them with Docker and cloud tools.</p>
-      <div class="cta"><a class="btn p" href="#projects">view projects →</a><a class="btn gh" href="#" target="_blank" rel="noopener">github ↗</a></div>
-      <div class="open"><i></i>Open to internships &amp; collabs — batch of 2023</div>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Prerak Barot home"><span class="brand-mark">&lt;/&gt;</span><span>Prerak<span style="color:var(--cyan)">.</span></span></a>
+      <nav class="nav-links" id="navMenu" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="resume.pdf">Resume</a><a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions"><a class="btn btn-quiet nav-resume" href="resume.pdf" target="_blank" rel="noopener">View Resume ↗</a><button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button></div>
     </div>
-    <div class="term tilt" aria-label="Terminal intro">
-      <div class="bar"><i></i><i></i><i></i>prerak@gecpalanpur: ~</div>
-      <div class="tbody">
-        <div class="l c" style="--i:0">whoami</div><div class="l" style="--i:1">prerak barot — backend × cloud</div>
-        <div class="l c" style="--i:2">cat focus.txt</div><div class="l" style="--i:3">rest apis · spring boot · docker</div>
-        <div class="l c" style="--i:4">./deploy --env=production</div><div class="l ok" style="--i:5">[ ok ] build passed [ ok ] containers up</div>
-        <div class="l c cur" style="--i:6"></div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="hero-kicker"><span>✦</span> COMPUTER ENGINEERING STUDENT · GTU</div>
+          <h1>Prerak <span class="gradient">Barot.</span></h1>
+          <div class="hero-role">AI / ML × BACKEND DEVELOPER</div>
+          <p class="hero-copy">I’m a Computer Engineering student exploring artificial intelligence and machine learning while building reliable backend APIs and intelligent applications. I enjoy turning ideas into practical software through hands-on projects and continuous learning.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#projects">Explore projects <span>↗</span></a><a class="btn btn-quiet" href="#contact">Contact me <span>→</span></a></div>
+          <div class="socials"><a href="https://github.com/barotprerak71252-hue" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/gj-cp-gecpl-2027-004-prerakbarot-615760377" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="mailto:barotprerak71252@gmail.com">Email ↗</a><a href="https://x.com/PrerakBarot1p" target="_blank" rel="noopener noreferrer">X / Twitter ↗</a></div>
+          <div class="stats"><div class="stat"><strong>AI + ML</strong><span>Learning & building</span></div><div class="stat"><strong>Backend</strong><span>APIs & databases</span></div><div class="stat"><strong>GTU</strong><span>Computer Engineering</span></div></div>
+        </div>
+        <div class="visual" aria-label="Decorative developer terminal illustration">
+          <div class="glow"></div><div class="orbit"></div><div class="orbit two"></div>
+          <div class="code-window"><div class="terminal-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="path">prerak@portfolio: ~/focus</span></div><div class="terminal-body"><div><span class="prompt">$</span> whoami</div><div class="value">Prerak Barot — AI/ML × Backend</div><div><span class="prompt">$</span> cat interests.txt</div><div class="value">machine learning · intelligent apps</div><div class="value">REST APIs · Java · Node.js · databases</div><div><span class="prompt">$</span> git status</div><div class="success">✓ learning, building, improving</div><div><span class="prompt">$</span> <span class="value">_</span></div></div></div>
+          <div class="floating-chip chip-ai">✧ AI / ML</div><div class="floating-chip chip-api">⌘ REST APIs</div><div class="floating-chip chip-python">{ } Python</div>
+        </div>
       </div>
-    </div>
-  </div>
-</div></header>
+    </section>
 
-<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+    <div class="ticker" aria-hidden="true"><div class="ticker-track" id="tickerTrack"><span>Artificial Intelligence</span><span>✦</span><span>Machine Learning</span><span>✦</span><span>Backend Development</span><span>✦</span><span>REST APIs</span><span>✦</span><span>Databases</span><span>✦</span></div></div>
 
-<section id="about"><div class="w">
-  <div class="eyebrow">// 01 — ~/about</div>
-  <h2>Studying engineering, building backends</h2>
-  <div class="grid">
-    <div class="card c8"><div class="cmd">$ whoami</div>
-      <p>I'm <b>Prerak Barot</b>, a Computer Engineering student at Government Engineering College, Palanpur (Gujarat Technological University). Somewhere between writing my first Java program and containerizing my first app, I found the side of software I care about most — <b>the part users never see</b>.</p>
-      <p>My interests sit at the intersection of backend development, cloud engineering and AI-integrated applications. I like the discipline of it: clean REST APIs, sensible database schemas, and deployments that don't fall over on a Monday morning.</p>
-      <p style="margin:0">I'm still a student, and I treat that as an advantage — I get to learn properly, build often, and break things safely. One project at a time, I'm working toward becoming an engineer who builds backend systems and cloud infrastructure that are <em>reliable, scalable and genuinely useful</em>.</p></div>
-    <div class="card c4"><div class="cmd">$ status --current</div>
-      <h3>B.E. Computer Engineering</h3><div class="sub">Government Engineering College, Palanpur — Gujarat Technological University</div><div class="g">batch of 2023</div></div>
-    <div class="card c5 focus"><div class="cmd">$ ls ~/focus</div><ul><li><span>01</span>Backend Development</li><li><span>02</span>Cloud Engineering</li><li><span>03</span>AI-integrated Apps</li></ul></div>
-    <div class="card c7"><div class="cmd">$ cat learning-path.txt</div><div class="tags" data-tags="Java,Spring Boot,REST APIs,Databases,Docker,Git &amp; GitHub,Cloud Platforms,AI Integration"></div></div>
-    <div class="card c5"><div class="cmd">$ ./goals --next</div><p style="margin:0;font-size:19px">Internships, open-source contributions, and going deeper into cloud — building real things with real constraints.</p></div>
-  </div>
-</div></section>
+    <section class="section" id="about"><div class="wrap">
+      <div class="eyebrow">01 / About me</div><h2 class="section-heading">Curious by nature.<br>Building by practice.</h2>
+      <div class="about-grid">
+        <article class="panel panel-pad about-copy"><div class="panel-label">// A LITTLE ABOUT ME</div><p>I’m <strong style="color:var(--ink)">Prerak Barot</strong>, a Computer Engineering student at Government Engineering College, Palanpur, affiliated with Gujarat Technological University.</p><p>My main interests are AI, machine learning, and backend development. I’m learning how intelligent features can work alongside well-designed APIs, databases, and dependable application logic.</p><p>I focus on building practical projects, improving my programming fundamentals, and growing through experimentation, feedback, and consistent learning.</p></article>
+        <article class="panel panel-pad education"><div class="panel-label">// EDUCATION</div><h3>B.E. Computer Engineering</h3><p>Government Engineering College, Palanpur<br>Gujarat Technological University (GTU)</p><div class="edu-meta">EXPECTED GRADUATION · 2027</div><div style="height:22px"></div><div class="panel-label">// CURRENT FOCUS</div><div class="focus-list"><div class="focus-item"><div class="focus-icon">✧</div><div><strong>AI & Machine Learning</strong><span>Python, ML concepts, AI integration</span></div></div><div class="focus-item"><div class="focus-icon">⌘</div><div><strong>Backend Development</strong><span>REST APIs, server-side logic, authentication</span></div></div><div class="focus-item"><div class="focus-icon">▤</div><div><strong>Databases</strong><span>MongoDB, SQL, data modelling</span></div></div></div></article>
+      </div>
+    </div></section>
 
-<section id="skills"><div class="w">
-  <div class="eyebrow">// 02 — ~/skills</div>
-  <h2>Tools I reach for</h2>
-  <div class="term" id="tree"><div class="bar"><i></i><i></i><i></i>tree ~/skills</div><div id="groups"></div></div>
-</div></section>
+    <section class="section" id="skills"><div class="wrap">
+      <div class="eyebrow">02 / Skills</div><h2 class="section-heading">Tools I’m learning<br>and building with.</h2>
+      <div class="skills-grid">
+        <article class="skill-card"><div class="skill-icon">✧</div><h3>AI & Machine Learning</h3><p>Exploring models, algorithms, and practical AI features.</p><div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">ML fundamentals</span><span class="tag">AI integration</span></div></article>
+        <article class="skill-card"><div class="skill-icon">⌘</div><h3>Backend Development</h3><p>Building server-side applications and APIs.</p><div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">REST APIs</span></div></article>
+        <article class="skill-card"><div class="skill-icon">▤</div><h3>Databases</h3><p>Persisting and working with application data.</p><div class="tags"><span class="tag">MongoDB</span><span class="tag">Mongoose</span><span class="tag">MySQL</span><span class="tag">PostgreSQL</span></div></article>
+        <article class="skill-card"><div class="skill-icon">◈</div><h3>Programming</h3><p>Developing core programming and problem-solving skills.</p><div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">OOP</span><span class="tag">DSA</span></div></article>
+        <article class="skill-card"><div class="skill-icon">⛭</div><h3>Developer Tools</h3><p>Tools for source control, API testing, and development.</p><div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Postman</span><span class="tag">VS Code</span></div></article>
+        <article class="skill-card"><div class="skill-icon">☁</div><h3>Cloud & Deployment</h3><p>Learning how to deploy and operate applications.</p><div class="tags"><span class="tag">Render</span><span class="tag">Docker</span><span class="tag">Cloud fundamentals</span></div></article>
+      </div>
+    </div></section>
 
-<section id="projects"><div class="w">
-  <div class="eyebrow">// 03 — ~/projects</div>
-  <h2>Things I've built</h2>
-  <div id="plist">
-  <div class="term feat"><div class="bar"><i></i><i></i><i></i>$ cat slotify.md<span class="badge f">FEATURED</span></div>
-    <div class="fb"><div>
-      <h3>Slotify — Slot Booking REST API</h3>
-      <p>Users register, log in, browse available slots, book them and cancel their own bookings. Every write operation is JWT-protected, double-bookings are blocked, and same-date overlaps are rejected with a 409. Built with Node.js, Express and MongoDB.</p>
-      <div class="tags" data-tags="node.js,express,mongodb,mongoose,jwt,bcrypt" style="margin-bottom:30px"></div>
-      <div class="cta" style="margin:0"><a class="btn p gh" href="#" target="_blank" rel="noopener">view repo ↗</a><a class="btn" href="#" target="_blank" rel="noopener">live api ↗</a></div>
-    </div><div><ul class="tree"><span class="g">├── what it does</span>
-      <li>jwt auth + bcrypt password hashing</li><li>slot crud · book · cancel with ownership rules</li><li>double-booking &amp; overlap conflict prevention (409)</li><li>/bookings/me — see your own bookings</li></ul></div></div>
-  </div>
-  <div class="two">
-    <div class="term"><div class="bar"><i></i><i></i><i></i>$ cat student-records-api.md<span class="badge l">LEARNING BUILD</span></div><div class="in">
-      <h3 class="card" style="all:unset;font:600 26px var(--disp);display:block;margin-bottom:14px">Student Records API</h3>
-      <p>A learning build — REST API for managing student records with CRUD, validation and JWT-based auth in Spring Boot.</p>
-      <div class="tags" data-tags="java,spring boot,rest,sql"></div><a class="g gh" href="#" target="_blank" rel="noopener" style="font-size:15px">view on github ↗</a></div></div>
-    <div class="term"><div class="bar"><i></i><i></i><i></i>$ cat containerized-deploy-lab.md<span class="badge l">LEARNING BUILD</span></div><div class="in">
-      <h3 class="card" style="all:unset;font:600 26px var(--disp);display:block;margin-bottom:14px">Containerized Deploy Lab</h3>
-      <p>A learning build — packaging a Spring Boot service into lean Docker images and orchestrating it with docker-compose.</p>
-      <div class="tags" data-tags="docker,docker-compose,spring boot"></div><a class="g gh" href="#" target="_blank" rel="noopener" style="font-size:15px">view on github ↗</a></div></div>
-  </div>
-  </div>
-  <div class="note">* learning builds are practice projects — full history on <a class="gh" href="#" target="_blank" rel="noopener">github</a>.</div>
-</div></section>
+    <section class="section" id="projects"><div class="wrap">
+      <div class="eyebrow">03 / Selected work</div><h2 class="section-heading">Projects in progress<br>and built with purpose.</h2>
+      <div class="project-list" id="projectList">
+        <article class="project-card"><div class="project-top"><div class="project-symbol">⌘</div><span class="project-status">Featured project</span></div><h3>Slotify — Appointment Slot API</h3><p>A REST API for managing appointment slots, including CRUD operations and persistent storage with MongoDB and Mongoose.</p><div class="tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">MongoDB</span><span class="tag">Mongoose</span></div><div class="project-links"><a href="https://github.com/barotprerak71252-hue/slotify" target="_blank" rel="noopener noreferrer">View source ↗</a></div></article>
+        <article class="project-card"><div class="project-top"><div class="project-symbol">◈</div><span class="project-status">Personal project</span></div><h3>Developer Portfolio</h3><p>A responsive portfolio built with HTML, CSS, JavaScript, Express, and MongoDB, with project listings and a contact-message workflow.</p><div class="tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Express</span><span class="tag">MongoDB</span></div><div class="project-links"><a href="https://github.com/barotprerak71252-hue/Portfolio" target="_blank" rel="noopener noreferrer">View source ↗</a><a href="https://portfolio-8ny3.onrender.com" target="_blank" rel="noopener noreferrer">Live portfolio ↗</a></div></article>
+        <article class="project-card"><div class="project-top"><div class="project-symbol">✧</div><span class="project-status">Personal build</span></div><h3>Offline JARVIS Assistant</h3><p>A local voice-and-text assistant project exploring offline language models, speech recognition, and desktop control.</p><div class="tags"><span class="tag">Python</span><span class="tag">Ollama</span><span class="tag">PySide6</span><span class="tag">Vosk</span></div><div class="project-links"><a href="https://github.com/barotprerak71252-hue" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a></div></article>
+        <article class="project-card"><div class="project-top"><div class="project-symbol">⌘</div><span class="project-status">Learning focus</span></div><h3>AI-Integrated Backend Apps</h3><p>Exploring ways to connect intelligent features to backend services and build useful applications. This is a learning focus, not a finished product.</p><div class="tags"><span class="tag">Python</span><span class="tag">REST APIs</span><span class="tag">AI integration</span></div><div class="project-links"><a href="#contact">Discuss an idea →</a></div></article>
+      </div>
+      <p class="muted" id="projectNote" style="font-size:12px;margin-top:16px">Selected projects. Some items are ongoing learning projects.</p>
+    </div></section>
 
-<section id="contact"><div class="w"><div class="ct">
-  <div>
-    <div class="eyebrow">// 04 — ~/contact</div>
-    <h2>Let's build something reliable</h2>
-    <p>Internships, collaborations, or just a conversation about backends and cloud — my inbox is open. Based in Palanpur, Gujarat, India.</p>
-    <a class="ln gh" href="#" target="_blank" rel="noopener">github/ barotprerak71252-hue</a>
-    <a class="ln" href="https://www.linkedin.com/in/gj-cp-gecpl-2027-004-prerakbarot-615760377" target="_blank" rel="noopener">linkedin/ prerak-barot</a>
-  </div>
-  <div class="term"><div class="bar"><i></i><i></i><i></i>$ ./contact --send</div>
-    <form id="f">
-      <label for="n">// name</label><input id="n" placeholder="your name" required autocomplete="name">
-      <label for="e">// email</label><input id="e" type="email" placeholder="you@example.com" required autocomplete="email">
-      <label for="m">// message</label><textarea id="m" placeholder="let's build something reliable..." required></textarea>
-      <button class="btn p" type="submit">send message →</button><div id="st" role="status"></div>
-    </form>
-  </div>
-</div></div></section>
-<footer></footer>
-</main>
 
-<script>
-const GH="https://github.com/barotprerak71252-hue";      // GitHub profile
-const LI = "https://www.linkedin.com/in/gj-cp-gecpl-2027-004-prerakbarot-615760377";     // LINKED IN url
-document.querySelectorAll('a.gh').forEach(a=>a.href=GH);
-document.querySelectorAll("a.li").forEach(a => a.href = LI);
-document.querySelectorAll('[data-tags]').forEach(e=>e.innerHTML=e.dataset.tags.split(',').map(t=>'<span>'+t+'</span>').join(''));
-const items=['Java','Spring Boot','REST APIs','Databases','Docker','Git & GitHub','Cloud Platforms','AI Integration'];
-const set=items.map(t=>'<span>'+t.replace('&','&amp;')+'</span><span>//</span>').join('');
-document.getElementById('mq').innerHTML=set+set;
-const data=[["languages",[["java",85,"primary"],["python",70],["html / css",65]]],["backend & data",[["spring boot",75,"core"],["rest api design",75],["node / express",65],["sql / databases",65]]],["tools & platforms",[["git & github",85],["docker",60],["cloud platforms",45,"learning"]]],["exploring",[["ai integration",40,"learning"]]]];
-document.getElementById('groups').innerHTML=data.map(([g,r])=>'<div class="grp"><h4>'+g.replace('&','&amp;')+'</h4>'+r.map(([n,v,b])=>'<div class="sk"><span>'+n+'</span><div class="trk"><i style="--w:'+v+'%"></i></div><span class="bd '+(b||'')+'">'+(b||'·')+'</span></div>').join('')+'</div>').join('');
-const tree=document.getElementById('tree');
-new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){tree.classList.add('on');o.disconnect()}},{threshold:.25}).observe(tree);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const tg=(t,st)=>'<div class="tags"'+(st?' style="'+st+'"':'')+'>'+(t||[]).map(x=>'<span>'+esc(x)+'</span>').join('')+'</div>';
-const lk=(u,t,c)=>u?'<a class="'+c+'" href="'+esc(u)+'" target="_blank" rel="noopener">'+t+' ↗</a>':'';
-const bar=(p,b,c)=>'<div class="bar"><i></i><i></i><i></i>$ cat '+esc(p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''))+'.md<span class="badge '+c+'">'+esc(b)+'</span></div>';
-fetch('/api/projects').then(r=>r.json()).then(ps=>{
-  if(!Array.isArray(ps)||!ps.length)return;
-  const f=ps.find(p=>p.featured),rest=ps.filter(p=>p!==f);let h='';
-  if(f)h+='<div class="term feat">'+bar(f,'FEATURED','f')+'<div class="fb"><div><h3>'+esc(f.title)+'</h3><p>'+esc(f.description)+'</p>'+tg(f.tags,'margin-bottom:30px')+'<div class="cta" style="margin:0">'+lk(f.repoUrl,'view repo','btn p')+lk(f.liveUrl,'live api','btn')+'</div></div><div><ul class="tree"><span class="g">├── what it does</span>'+(f.highlights||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></div></div>';
-  if(rest.length)h+='<div class="two">'+rest.map(p=>'<div class="term">'+bar(p,p.badge||'PROJECT','l')+'<div class="in"><h3 style="font:600 26px var(--disp)">'+esc(p.title)+'</h3><p>'+esc(p.description)+'</p>'+tg(p.tags)+lk(p.repoUrl,'view on github','g')+'</div></div>').join('')+'</div>';
-  document.getElementById('plist').innerHTML=h;
-}).catch(()=>{});
-document.getElementById('f').addEventListener('submit',async ev=>{
-  ev.preventDefault();const st=document.getElementById('st'),b=ev.target.querySelector('button');b.disabled=true;st.textContent='sending…';
-  try{const r=await fetch('/api/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:document.getElementById('n').value,email:document.getElementById('e').value,message:document.getElementById('m').value})});
-  const d=await r.json();if(!r.ok)throw new Error(d.error||'failed');ev.target.reset();st.textContent='[ ok ] message sent — thanks!'}
-  catch(x){st.textContent='[ error ] '+x.message}
-  b.disabled=false;
-});
-</script>
+    <section class="section" id="experience"><div class="wrap">
+      <div class="eyebrow">04 / Experience & Certifications</div>
+      <h2 class="section-heading">Experience and learning<br>that move me forward.</h2>
 
-<script>
-  const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu");
+      <div class="project-list" id="experienceList">
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-symbol">⌘</div>
+            <span class="project-status">Internship experience</span>
+          </div>
+          <h3>Backend Development Intern</h3>
+          <p class="muted" style="margin-bottom:10px">CodeGen</p>
+          <p>Completed a Backend Development internship, gaining practical exposure to software development and backend engineering concepts.</p>
+          <div class="tags">
+            <span class="tag">Backend Development</span>
+            <span class="tag">Software Engineering</span>
+          </div>
+          <div class="project-links">
+            <span>10 July – 10 August 2026</span>
+          </div>
+        </article>
 
-  menuToggle.addEventListener("click", () => {
-    const isOpen = navMenu.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", isOpen);
-    menuToggle.setAttribute(
-      "aria-label",
-      isOpen ? "Close navigation menu" : "Open navigation menu"
-    );
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-  });
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-symbol">☁</div>
+            <span class="project-status">Cloud training</span>
+          </div>
+          <h3>Microsoft Program 2026</h3>
+          <p class="muted" style="margin-bottom:10px">Powered by CloudThat</p>
+          <p>Completed 15 days of skill-based cloud computing training at Government Engineering College, Palanpur.</p>
+          <div class="tags">
+            <span class="tag">Cloud Computing</span>
+            <span class="tag">Microsoft Program</span>
+            <span class="tag">CloudThat</span>
+          </div>
+          <div class="project-links">
+            <span>18 July 2026 · Certificate CT/25/109425</span>
+            <a href="certificate.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a>
+          </div>
+        </article>
 
-  navMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open navigation menu");
-      menuToggle.textContent = "☰";
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-symbol">✧</div>
+            <span class="project-status">Certification</span>
+          </div>
+          <h3>Data Science Essentials with Python</h3>
+          <p class="muted" style="margin-bottom:10px">Cisco Networking Academy</p>
+          <p>Coursework covering Python libraries, DataFrames, data cleaning and manipulation, Matplotlib visualization, linear models, and hypothesis testing.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Data Science</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Data Analysis</span>
+          </div>
+          <div class="project-links">
+            <span>Issued 27 July 2026</span>
+            <a href="Cer.pdf" target="_blank" rel="noopener noreferrer">View certificate ↗</a>
+          </div>
+        </article>
+      </div>
+    </div></section>
+
+
+    <section class="section" id="resume"><div class="wrap">
+      <div class="eyebrow">05 / Resume</div><h2 class="section-heading">A little more<br>about my journey.</h2>
+      <div class="resume-grid"><article class="panel resume-card"><div class="resume-icon">▤</div><div><h3>My Resume</h3><p>Education, skills, projects, and experience.</p></div><a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener">Open PDF ↗</a></article><article class="panel resume-card"><div class="resume-icon">↗</div><div><h3>GitHub</h3><p>Explore my code and current projects.</p></div><a class="btn btn-quiet" href="https://github.com/barotprerak71252-hue" target="_blank" rel="noopener noreferrer">View profile ↗</a></article></div>
+      <p class="muted" style="font-size:12px;margin-top:12px">Resume link note: place your PDF at <code>/public/resume.pdf</code> so the buttons above work, or change the links to your actual resume URL.</p>
+    </div></section>
+
+    <section class="section" id="contact"><div class="wrap">
+      <div class="eyebrow">06 / Contact</div><h2 class="section-heading">Have an idea?<br>Let’s connect.</h2>
+      <div class="contact-grid"><div><p class="contact-intro">I’m interested in learning opportunities, internships, collaborations, and conversations about AI, machine learning, and backend development.</p><div class="contact-links"><a class="contact-link" href="https://github.com/barotprerak71252-hue" target="_blank" rel="noopener noreferrer"><span class="link-icon">⌘</span> github.com/barotprerak71252-hue ↗</a><a class="contact-link" href="https://www.linkedin.com/in/gj-cp-gecpl-2027-004-prerakbarot-615760377" target="_blank" rel="noopener noreferrer"><span class="link-icon">in</span> Connect on LinkedIn ↗</a><a class="contact-link" href="https://x.com/PrerakBarot1p" target="_blank" rel="noopener noreferrer"><span class="link-icon">𝕏</span> Follow on X ↗</a><a class="contact-link" href="mailto:prerakbarot@example.com"><span class="link-icon">✉</span> Email me</a></div></div>
+        <form class="panel contact-form" id="contactForm"><div class="panel-label">// SEND A MESSAGE</div><label for="name">Your name</label><input id="name" name="name" placeholder="Enter your name" autocomplete="name" required maxlength="100"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required maxlength="254"><label for="message">Message</label><textarea id="message" name="message" placeholder="What would you like to discuss?" required maxlength="5000"></textarea><button class="btn btn-primary" type="submit">Send message <span>→</span></button><div class="form-status" id="formStatus" role="status" aria-live="polite"></div></form>
+      </div>
+    </div></section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> Prerak Barot · Built while learning.</span><span><a href="#home">Back to top ↑</a> · <a href="https://github.com/barotprerak71252-hue" target="_blank" rel="noopener noreferrer">GitHub</a></span></div></footer>
+
+  <script>
+    // Public profile links. Replace the email placeholder with your real public email address.
+    const GITHUB_URL = 'https://github.com/barotprerak71252-hue';
+    const LINKEDIN_URL = 'https://www.linkedin.com/in/gj-cp-gecpl-2027-004-prerakbarot-615760377';
+    const PUBLIC_EMAIL = 'barotprerak71252@gmail.com';
+    document.querySelectorAll('a[href^="mailto:"]').forEach(link => link.href = `mailto:${PUBLIC_EMAIL}`);
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Duplicate ticker items for a seamless marquee.
+    const ticker = document.getElementById('tickerTrack');
+    ticker.innerHTML += ticker.innerHTML;
+
+    // Accessible mobile navigation.
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      menuToggle.textContent = isOpen ? '✕' : '☰';
     });
-  });
-</script>
+    navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      menuToggle.textContent = '☰';
+    }));
 
+    // Preserve the existing backend-driven project feature. If the API responds with
+    // project records, render them; if it fails, the static project cards remain visible.
+    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[char]));
+    const renderTags = tags => (Array.isArray(tags) ? tags : []).map(tag => `<span class="tag">${escapeHTML(tag)}</span>`).join('');
+    const safeLink = (url, label) => {
+      if (!url) return '';
+      try {
+        const parsed = new URL(url, window.location.origin);
+        if (!['http:', 'https:'].includes(parsed.protocol)) return '';
+        return `<a href="${escapeHTML(parsed.href)}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`;
+      } catch { return ''; }
+    };
+    fetch('/api/projects')
+      .then(response => { if (!response.ok) throw new Error('Projects API unavailable'); return response.json(); })
+      .then(projects => {
+        if (!Array.isArray(projects) || projects.length === 0) return;
+        const projectList = document.getElementById('projectList');
+        projectList.innerHTML = projects.map(project => {
+          const tags = renderTags(project.tags);
+          const links = safeLink(project.repoUrl, 'View source') + safeLink(project.liveUrl, 'Live demo');
+          return `<article class="project-card"><div class="project-top"><div class="project-symbol">⌘</div><span class="project-status">${escapeHTML(project.badge || (project.featured ? 'Featured project' : 'Project'))}</span></div><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.description)}</p><div class="tags">${tags}</div><div class="project-links">${links}</div></article>`;
+        }).join('');
+        document.getElementById('projectNote').textContent = 'Project cards are loaded from the portfolio projects API.';
+      })
+      .catch(() => { /* Keep fallback project cards visible if the API is unavailable. */ });
+
+    // Uses the existing POST /api/messages endpoint. No visitor account is required.
+    document.getElementById('contactForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const button = form.querySelector('button[type="submit"]');
+      const status = document.getElementById('formStatus');
+      const originalText = button.innerHTML;
+      button.disabled = true;
+      button.textContent = 'Sending…';
+      status.textContent = '';
+      try {
+        const response = await fetch('/api/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            message: document.getElementById('message').value.trim()
+          })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error || 'Could not send your message. Please try again.');
+        form.reset();
+        status.textContent = '✓ Message sent. Thank you for reaching out!';
+      } catch (error) {
+        status.textContent = `Message not sent: ${error.message}`;
+      } finally {
+        button.disabled = false;
+        button.innerHTML = originalText;
+      }
+    });
+  </script>
 </body>
 </html>
